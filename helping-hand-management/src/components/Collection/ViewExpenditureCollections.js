@@ -84,7 +84,7 @@ class ViewExpenditureCollections extends Component {
         return (
             <div>
 
-                <Table hover responsive className="table-outline mb-0 d-none d-sm-table">
+                <Table hover responsive className="table-outline mb-0 d-sm-table">
                     <thead className="thead-light">
                         <tr>
                             <th>Name</th>

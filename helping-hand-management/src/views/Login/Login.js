@@ -10,6 +10,16 @@ class Login extends Component {
     userName: '',
     password:''
   }
+
+  const isLogin = localStorage.getItem("isLogin");
+  console.log("login.js login " + localStorage.getItem('isLogin'));
+  if (isLogin === 'true') {
+    console.log("if");
+    this.props.history.push('/');
+  } else {
+    console.log("else");
+    
+  }
 }
 
 onUserNameChanged(e) {
@@ -29,9 +39,12 @@ onLoginClicked(e) {
   } else {
     if (this.state.userName ==='admin' && this.state.password ==='admin' ) {
       console.log(localStorage.getItem('isLogin'));
-      localStorage.setItem('isLogin', true);
-      alert("Successful Added!!!");
+      localStorage.setItem('isLogin', 'true');
+      this.props.history.push('/');
+      alert("Successful Login!!!");
       console.log(localStorage.getItem('isLogin'));
+    } else {
+      alert("Invalid user name or password!!!");
     }
      this.setState({
         userName: '',

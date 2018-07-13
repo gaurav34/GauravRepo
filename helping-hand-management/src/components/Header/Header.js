@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { Route, Link, withRouter } from "react-router-dom";
+
 import {
   Nav,
   NavItem,
@@ -9,6 +11,9 @@ import {
 
 class Header extends Component {
 
+  constructor(props) {
+    super(props);
+  }
   sidebarToggle(e) {
     e.preventDefault();
     document.body.classList.toggle('sidebar-hidden');
@@ -29,9 +34,11 @@ class Header extends Component {
     document.body.classList.toggle('aside-menu-hidden');
   }
 
+
   onClickLogout(e) {
-    console.log("Logout clicked");
-    localStorage.setItem('isLogin', false);
+    e.preventDefault();
+    localStorage.setItem('isLogin', 'false');
+    this.props.history.push('/login');
   }
 
   render() {
@@ -44,10 +51,10 @@ class Header extends Component {
         <NavbarToggler className="d-md-down-none mr-auto" onClick={this.sidebarToggle}>
           <span className="navbar-toggler-icon"></span>
         </NavbarToggler>
-        <Nav className="d-md-down-none" navbar>
+        <Nav navbar>
     
           <NavItem className="px-3">
-            <NavLink href="#" onClick={this.onClickLogout}>Logout</NavLink>
+            <NavLink href="#" onClick={(e) => this.onClickLogout(e)}>Logout</NavLink>
           </NavItem>
         </Nav>
         <NavbarToggler className="d-md-down-none" onClick={this.asideToggle}>
@@ -58,4 +65,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

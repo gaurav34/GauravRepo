@@ -20,16 +20,16 @@ class Full extends Component {
 
   constructor(props) {
     super(props)
-    var config = {
-      apiKey: "AIzaSyDPE5V3sCaTs5I8u84esN9fMLuRni5K2i4",
-      authDomain: "helpinghandmangment.firebaseapp.com",
-      databaseURL: "https://helpinghandmangment.firebaseio.com",
-      projectId: "helpinghandmangment",
-      storageBucket: "helpinghandmangment.appspot.com",
-      messagingSenderId: "261580186704"
-    };
-    firebase.initializeApp(config);
 
+
+    const isLogin = localStorage.getItem("isLogin");
+    console.log("full.js login " + localStorage.getItem('isLogin'));
+    if (isLogin === 'true') {
+      console.log("if");
+    } else {
+      console.log("else");
+      this.props.history.push('/login');
+    }
   }
   render() {
     return (
@@ -43,7 +43,7 @@ class Full extends Component {
               <Switch>
                 {/* <Route path="/dashboard" name="Dashboard" component={Dashboard} /> */}
 
-                <Route path ="/dashboard" name="Dashboard" render={(props)=> <Login {...props} db={firebase}/>}/>
+                <Route path ="/dashboard" name="Dashboard" render={(props)=> <Dashboard {...props} db={firebase}/>}/>
                 <Route path="/collection" name="Collection"
                   render={(props) => <AddCollection {...props} db={firebase} />}
                 />
